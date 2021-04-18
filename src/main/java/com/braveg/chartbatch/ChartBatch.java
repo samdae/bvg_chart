@@ -68,38 +68,38 @@ public class ChartBatch {
 
     @Scheduled(cron = "10 */10 * * * *") // 매일 매시 매10분 간격 10초
     public void eachHourBatch() throws Exception {
+
         logger.info("Current Thread : " + Thread.currentThread().getName());
-        List<ChartDto> result = chartService.getTodayRankList();
-        if( result == null || result.size() == 0){
-            List<ChartDto> list = this.getList();
-            ChartDto dto = null;
 
-            for(ChartDto d : list) {
-                dto = new ChartDto();
-                dto.setSite(  d.getSite()  );
-                dto.setTitle( d.getTitle().replace("'","`") ); // mysql 홑따옴표 에러 때문
-                dto.setRanking(  d.getRanking()  );
+        List<ChartDto> list = this.getList();
+        ChartDto dto = null;
 
-                chartService.insertEachHour(dto);
-            }
+        for(ChartDto d : list) {
+            dto = new ChartDto();
+            dto.setSite(  d.getSite()  );
+            dto.setTitle( d.getTitle().replace("'","`") ); // mysql 홑따옴표 에러 때문
+            dto.setRanking(  d.getRanking()  );
+
+            chartService.insertEachHour(dto);
         }
     }
-    @Scheduled(cron = "10 0 0 * * *") // 매일 00시 00분 20초
+    @Scheduled(cron = "10 0 0 * * *") // 매일 00시 00분 10초
     public void dateBatch() throws Exception{
+
         logger.info("Current Thread : " + Thread.currentThread().getName());
-        if( chartService.getDateRankList() == null) {
-            List<ChartDto> list = this.getList();
-            ChartDto dto = null;
 
-            for(ChartDto d : list) {
-                dto = new ChartDto();
-                dto.setSite(  d.getSite()  );
-                dto.setTitle( d.getTitle().replace("'","`") ); // mysql 홑따옴표 에러 때문
-                dto.setRanking(  d.getRanking()  );
+        List<ChartDto> list = this.getList();
+        ChartDto dto = null;
 
-                chartService.insertDate(dto);
-            }
+        for(ChartDto d : list) {
+            dto = new ChartDto();
+            dto.setSite(  d.getSite()  );
+            dto.setTitle( d.getTitle().replace("'","`") ); // mysql 홑따옴표 에러 때문
+            dto.setRanking(  d.getRanking()  );
+
+            chartService.insertDate(dto);
         }
+
     }
     @Scheduled(cron = "0 0 0 * * *") // 매일 00시 00분 00초
     public void resetBatch() throws Exception {
