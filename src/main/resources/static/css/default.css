@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap');
+@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Noto Serif KR', serif !important;
+    text-align: center;
+    background-color: #2c3740;
+}
+
+.jumbotron .container{
+    max-width: 55em !important;
+}
+
+.color {
+    width: 10%;
+    height: 10%;
+    border-radius: 100px; /* 레이어 반크기만큼 반경을 잡기*/
+    position: absolute;
+    vertical-align: middle;
+    left: 10%;
+    top: 10%;
+    background: red;
+    background: -webkit-linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
+    background: -o-linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
+    background: -moz-linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
+    background: linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
+}
+.jumbotron{
+
+    border-radius: 0 !important;
+}
+
+hr.lineBold {
+    border: blue 4px solid;
+}
+
+span#strTime {
+    font-size: 1em;
+}
+
+h1.title {
+    font-size: 2em;
+    font-weight: 800;
+    margin: 0px;
+    font-family: 'Gothic A1', sans-serif;
+
+}
+
+.stdDate {
+    font-weight: 800;
+}
+
+
+div.infoArea {
+    margin: 10px;
+    font-size: 1em;
+    text-align: left;
+}
+
+div.subTitle {
+    margin-bottom: 5px;
+    font-family: 'Gothic A1', sans-serif;
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: 600;
+
+}
+
+div.smallTitle {
+    font-family: 'Gothic A1', sans-serif;
+    text-align: left;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: blue;
+}
+
+table {
+    /*border: black 1px solid;*/
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+tr.site > td {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 800;
+    font-size: 0.8em;
+    border: darkgray 1px solid;
+    background-color: #a8e4ff;
+    padding: 5px;
+}
+
+p.card-title {
+    text-align: left;
+    line-height: 5px;
+    font-family: 'Noto Serif KR', serif !important;
+    font-weight: 600;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+div.card {
+    height: auto;
+    border: 0px;
+
+}
+
+.album {
+    width: 100%;
+}
+
+div.card-body {
+    padding: 10px 0 10px 0;
+}
+
+
+a.btn {
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 0.5em;
+}
+
+
+td {
+    font-family: 'Noto Serif KR', serif !important;
+    font-size: 1em;
+    font-weight: 600;
+    border: darkgray 1px solid;
+    padding: 3px;
+    border: 0px;
+    border-bottom: 1px darkgray solid;
+    border-top: 1px darkgray solid;
+    text-align: center;
+}
+
+td.rank {
+    background-color: #a8e4ff;
+    width: 50px;
+}
+
+img.rankImg {
+    width: 100%;
+    /*height: 50px;*/
+}
+
+td.tdImg {
+    width: 50px;
+}
+
+footer {
+    font-family: 'Gothic A1', sans-serif;
+    background: white;
+    font-size: 0.8em;
+    color: darkgrey;
+}
+
+
+.logo {
+    width: 100px;
+}
+
+.container{
+    padding-top : 20px;
+    padding-left :20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+
+
+
+/* PC (해상도 1024px)*/
+@media all and (min-width:1024px) { /*스타일입력*/
+    iframe{
+        border: 0px;
+        padding : 10px;
+        position: fixed;
+        right: 7%;
+        top : 10%;
+        text-align: center;
+        /*width: 70px;*/
+        height: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+
+    .floating {
+        padding : 10px;
+        background-color: #f9f9f9;
+        border: 0px solid #000;
+        position: fixed;
+        right: 0;
+        bottom: 180px;
+        text-align: center;
+        width: 80px;
+        border-radius: 8px;
+    }
+
+
+    .floating div:nth-child(1) {
+        width: 50px;
+    }
+
+    .check-area{
+        font-size : 0.8em;
+    }
+    /* The Modal (background) */
+    .modal {
+        font-family: 'Gothic A1', sans-serif;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 400px; /* Could be more or less, depending on screen size */
+    }
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right !important;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) {
+
+    iframe{
+        border: 0px;
+        padding : 10px;
+        position: fixed;
+        right: 5%;
+        top : 10%;
+        text-align: center;
+        /*width: 70px;*/
+        height: 80%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+
+    .floating {
+        padding : 10px;
+        background-color: #f9f9f9;
+        border: 0px solid #000;
+        position: fixed;
+        right: 0;
+        bottom: 180px;
+        /*margin-right: -615px;*/
+        text-align: center;
+        /*width: 70px;*/
+        border-radius: 8px;
+        /*-webkit-border-radius: 8px;*/
+    }
+
+
+    /* The Modal (background) */
+    .modal {
+        font-family: 'Gothic A1', sans-serif;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 400px; /* Could be more or less, depending on screen size */
+    }
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right !important;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width:767px) {
+
+    section{
+        width: 100%;
+    }
+
+    iframe{
+        border: 0px;
+        padding : 10px;
+        position: fixed;
+        left: 0;
+        top : 0;
+        text-align: center;
+        width: 100%;
+        height: 600px;
+        border-radius: 8px;
+    }
+
+
+    .floating {
+        padding : 10px;
+        background-color: #f9f9f9;
+        border: 0px solid #000;
+        position: fixed;
+        right: 0;
+        bottom: 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+
+    .floating div:nth-child(1) img {
+        width: 50px;
+
+    }
+
+    /* The Modal (background) */
+    .modal {
+        font-family: 'Gothic A1', sans-serif;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 95%; /* Could be more or less, depending on screen size */
+    }
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right !important;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+}

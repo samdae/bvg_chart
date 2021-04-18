@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.braveg.chart.ChartMapper">
+    <!--    매시간별 순위 LIST    -->
+    <select id="getTodayRankList" resultType="HashMap">
+        SELECT *
+        FROM TODAY_RANK
+        WHERE stime = DATE_FORMAT(NOW(),'%H')
+        ORDER BY site, ranking
+    </select>
+    <!--    일일 순위 LIST    -->
+    <select id="getDateRankList" resultType="HashMap">
+        SELECT *
+        FROM DATE_RANK
+        WHERE sdate = DATE_FORMAT(NOW(),'%Y%m%d')
+        ORDER BY site, ranking
+    </select>
+    <!--    매시간별 순위    -->
+    <insert id="insertEachHour" parameterType="com.braveg.chart.ChartDto">
+        INSERT INTO TODAY_RANK (site, title, stime, ranking)
+        VALUES ( #{site}, #{title}, date_format(now(), '%H'), #{ranking} )
+        ON DUPLICATE KEY UPDATE
+        ranking = #{ranking}
+    </insert>
+    <!--    일일 순위    -->
+    <insert id="insertDate" parameterType="com.braveg.chart.ChartDto">
+        INSERT INTO DATE_RANK(site, title, sdate, ranking)
+        VALUES ( #{site}, #{title}, DATE_FORMAT(now(),'%Y%m%d'), #{ranking} )
+    </insert>
+    <!--    초기화    -->
+    <delete id="resetEachHour">
+        DELETE FROM TODAY_RANK
+    </delete>
+</mapper>

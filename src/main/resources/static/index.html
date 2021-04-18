@@ -1,0 +1,289 @@
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+<script src="js/chart/chartpage.js"></script>
+<script>
+    $(document).ready(function () {
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+
+        $("#strTime").text("( " + year + "." + month + "." + day + ". " + hour + "시 기준 )");
+        $("#fileDownTime").val(year + "-" + month + "-" + day + " " + hour + "시");
+
+        var stDate = new Date('march 7,2017');
+        var endDate = new Date();
+
+        var btMs = endDate.getTime() - stDate.getTime();
+        var btDay = Math.floor(btMs / (1000 * 60 * 60 * 24));
+
+        $(".stdDate").text(btDay);
+    });
+
+function captureBody() {
+        $("#infoArea_a").css("display", "none");
+        $("#infoArea_b").css("display", "block");
+        $(".check-area").css("display", "none");
+        $("#btnDiv").css("display","none");
+        try{
+            html2canvas(document.querySelector(".container"), { logging: true, letterRendering: 1,  allowTaint: false }
+            ).then(canvas => {
+                var el = document.getElementById("target");
+                el.href = canvas.toDataURL("image/jpeg");
+                el.download = $("#fileDownTime").val() + ' 순위.jpg';
+                el.click();
+            });
+        }catch (e){
+        }finally {
+            $("#infoArea_a").css("display", "block");
+            $("#infoArea_b").css("display", "none");
+            $(".check-area").css("display", "block");
+            $("#btnDiv").css("display","block");
+        }
+    }
+</script>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RC9EDDVEW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-5RC9EDDVEW');
+    </script>
+    <!--  Naver Analytics -->
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+        if(!wcs_add) var wcs_add = {};
+        wcs_add["wa"] = "92d730a3d68800";
+        if(window.wcs) { wcs_do();}
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>쁘-챠트</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../css/album.css" rel="stylesheet">
+    <link href="../../css/default.css" rel="stylesheet">
+</head>
+
+<body>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <hr class="lineBold"/>
+            <h1 class="title">브레이브걸스 <br/>음원사이트별 순위</h1>
+            <hr class="lineBold"/>
+            <div><span id="strTime" style="font-size: 1.2em; font-weight: bold"></span>
+                <input type="hidden" id="fileDownTime"/>
+            </div>
+            <div style="text-align: right; display: none;" id="btnDiv" >
+                <a href="#" class="btn btn-sm btn-outline-secondary my-2" onclick="location.reload();">새로고침</a>
+                <a href="#" class="btn btn-sm btn-outline-secondary my-2" onclick="javascript:captureBody();">캡쳐</a>
+            </div>
+            <div class="subTitle"><p>1. 음원사이트별 순위</p></div>
+            <div class="smallTitle"><p>❏ 개&nbsp;&nbsp;&nbsp;&nbsp;요</p></div>
+            <div class="infoArea" id="infoArea_a">
+                <p> ○ 브레이브걸스 역주행에 따른 일간 차트 보고 간소화</p>
+                <p> ○ 운영자는 본사이트에서 제공하는 정보 사용/공유로 인해 발생된 문제의 책임은 지지 않는다.</p>
+                <p> ○ 역주행 신화를 이룬 곡인 롤린(Rollin')은 2017년 3일 7일 발매된 앨범 Rollin'의 타이틀 곡으로 발매된지는 금일
+                    기준으로 <span class="stdDate" style="color: #0a5eff"> </span> 일이 되었다.</p>
+            </div>
+            <div class="infoArea" id="infoArea_b" style="display: none;">
+                <p> ○ 브레이브걸스 역주행에 따른 일간 차트 보고 간소화</p>
+            </div>
+            <div class="smallTitle"><p>❏ 순&nbsp;&nbsp;&nbsp;&nbsp;위</p></div>
+            <div class="check-area pt-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-melon" value="card-melon"
+                           onclick="checkbox(this)" checked>
+                    <label class="form-check-label" for="check-melon">멜론</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-youtube" value="card-youtube"
+                           onclick="checkbox(this)" checked>
+                    <label class="form-check-label" for="check-youtube">유튜브</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-bugs" value="card-bugs"
+                           onclick="checkbox(this)" checked>
+                    <label class="form-check-label" for="check-bugs">벅스</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-genie" value="card-genie"
+                           onclick="checkbox(this)" checked>
+                    <label class="form-check-label" for="check-genie">지니</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-flo" value="card-flo"
+                           onclick="checkbox(this)"
+                           checked>
+                    <label class="form-check-label" for="check-flo">플로</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-vibe" value="card-vibe"
+                           onclick="checkbox(this)" checked>
+                    <label class="form-check-label" for="check-vibe">바이브</label>
+                </div>
+            </div>
+            <div class="album">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12" id="card-melon" style="padding-left:0;padding-right: 0;">
+                            <div class="card mb-1">
+                                <div class="card-body">
+                                    <p class="card-title">○ 멜론(24Hits)</p>
+                                    <table>
+                                        <colgroup>
+                                            <col width=10%">
+                                            <col width=9%">
+                                            <col/>
+                                        </colgroup>
+                                        <tbody id="melon">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="card-youtube" style="padding-left:0;padding-right: 0;">
+                            <div class="card mb-1">
+                                <div class="card-body">
+                                    <p class="card-title">○ 유튜브(주간)</p>
+                                    <table>
+                                        <colgroup>
+                                            <col width=10%">
+                                            <col width=9%">
+                                            <col/>
+                                        </colgroup>
+                                        <tbody id="youtube">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="card-bugs" style="padding-left:0;padding-right: 0;">
+                            <div class="card mb-1">
+
+                                <div class="card-body">
+                                    <p class="card-title">○ 벅스</p>
+
+                                    <table>
+                                        <colgroup>
+                                            <col width="10%">
+                                            <col width="9%">
+                                            <col/>
+                                        </colgroup>
+                                        <tbody id="bugs">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="card-genie" style="padding-left:0;padding-right: 0;">
+                            <div class="card mb-1">
+                                <div class="card-body">
+                                    <p class="card-title">○ 지니</p>
+
+                                    <table>
+                                        <colgroup>
+                                            <col width="10%">
+                                            <col width="9%">
+                                            <col/>
+                                        </colgroup>
+                                        <tbody id="genie">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="card-flo" style="padding-left:0;padding-right: 0;">
+                            <div class="card mb-1">
+                                <div class="card-body">
+                                    <p class="card-title">○ 플로</p>
+
+                                    <table>
+                                        <colgroup>
+                                            <col width="10%">
+                                            <col width="9%">
+                                            <col/>
+                                        </colgroup>
+                                        <tbody id="flo">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="card-vibe" style="padding-left:0;padding-right: 0;">
+                            <div class="card mb-1">
+                                <div class="card-body">
+                                    <p class="card-title">○ 바이브</p>
+
+                                    <table>
+                                        <colgroup>
+                                            <col width="10%">
+                                            <col width="9%">
+                                            <col/>
+                                        </colgroup>
+                                        <tbody id="vibe">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+</main>
+<footer class="text-muted">
+    <div class="container">
+
+        <p class="small text-light"><a target="_blank" href="https://open.kakao.com/o/s41Pxd7c"><img style="width: 100px;" src="../../images/s41Pxd7c.jpeg"/></a><img class="logo" src="../../images/logo.png"/></p>
+        <br/>
+        <p class="small" style="font-size: 100%; !important;">
+            추가 건의사항이나 아이디어는, <br/>
+            QR코드를 스캔하거나 클릭하여 의견을 공유해주세요 !
+        </p>
+        <br/><br/><br/>
+    </div>
+</footer>
+
+<script src="../../js/bootstrap.min.js"></script>
+<a id="target" style="display: none"></a>
+
+</body>
+</html>
+<script>
+    function checkbox(obj) {
+        var cardName = $(obj).val();
+
+        if ($(obj).is(":checked")) {
+            $("#" + cardName).css('display', 'block');
+        } else {
+            $("#" + cardName).css('display', 'none');
+        }
+    }
+</script>
