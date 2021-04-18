@@ -12,4 +12,9 @@ public interface ChartService {
     int insertDate(ChartDto dto) throws Exception;
 
     int resetEachHour() throws Exception;
+
+    /** ///////////////////    Visitor    /////////////////// **/
+    int insertVisitor(VisitDto dto);
+    int getTodayCnt();
+    int getTotalCnt();
 }

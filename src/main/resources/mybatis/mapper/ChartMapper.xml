@@ -32,4 +32,37 @@
     <delete id="resetEachHour">
         DELETE FROM TODAY_RANK
     </delete>
+
+
+<!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    -->
+        <insert id="insertVisitor" parameterType="com.braveg.chart.VisitDto">
+        INSERT INTO VISITOR (
+            VISIT_ID,
+            VISIT_IP,
+            VISIT_TIME,
+            VISIT_REFER,
+            VISIT_AGENT
+        )
+        SELECT
+                CASE COUNT(*) WHEN 0 THEN 1 ELSE COUNT(*)+1 END AS VISIT_ID
+            ,   #{visit_ip} AS VISIT_IP
+            ,   DATE_FORMAT(now(), '%Y%m%d%H%i%s') AS VISIT_TIME
+            ,   #{visit_refer} AS VISIT_REFER
+            ,   #{visit_agent} AS VISIT_AGENT
+        FROM VISITOR
+
+    </insert>
+
+    <select id="getTodayCnt" resultType="Integer">
+        SELECT
+            CASE COUNT(*) WHEN 0 THEN 1 ELSE COUNT(*) END AS VISIT_ID
+        FROM VISITOR
+        WHERE DATE_FORMAT(VISIT_TIME, '%Y%m%d') = DATE_FORMAT(now(), '%Y%m%d')
+    </select>
+
+    <select id="getTotalCnt" resultType="Integer">
+        SELECT
+            CASE COUNT(*) WHEN 0 THEN 1 ELSE COUNT(*) END AS VISIT_ID
+        FROM VISITOR
+    </select>
 </mapper>

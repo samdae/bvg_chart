@@ -49,4 +49,22 @@ public class ChartServiceImpl implements ChartService {
     }
 
 
+    /** ///////////////////    Visitor    /////////////////// **/
+
+    @Override
+    public int insertVisitor(VisitDto dto) {
+        return chartMapper.insertVisitor(dto);
+    }
+
+    @Override
+    public int getTodayCnt() {
+        return chartMapper.getTodayCnt();
+    }
+
+    @Override
+    public int getTotalCnt() {
+        return chartMapper.getTotalCnt();
+    }
+
+
 }

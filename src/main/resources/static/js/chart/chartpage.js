@@ -4,12 +4,11 @@ $(document).ready( function (){
     $("#btnDiv").css("display", "block")
 });
 function getChart() {
-        $.ajax({
+    $.ajax({
         url: '/getChartList.ajax',
-        method: 'get',
+        method: 'post',
         dataType: 'json',
         success: function(data) {
-            //console.log(data.data);
             listSet(data.data);
         }
     });

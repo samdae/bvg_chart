@@ -58,12 +58,12 @@ public class ChartBatch {
 //        System.out.println("|           B A T C H --- T E S T          |");
 //        System.out.println("============================================");
 //    }
-    @Scheduled(cron = "5 * * * * *") // 매일 매시 매분 5초
-    public void batch() throws Exception {
-        logger.info("Current Thread : " + Thread.currentThread().getName());
-        List<ChartDto> result = chartService.getTodayRankList();
-        System.out.println(result);
-    }
+//    @Scheduled(cron = "5 * * * * *") // 매일 매시 매분 5초
+//    public void batch() throws Exception {
+//        logger.info("Current Thread : " + Thread.currentThread().getName());
+//        List<ChartDto> result = chartService.getTodayRankList();
+//        System.out.println(result);
+//    }
 
 
     @Scheduled(cron = "10 */10 * * * *") // 매일 매시 매10분 간격 10초

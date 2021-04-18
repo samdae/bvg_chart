@@ -16,4 +16,9 @@ public interface ChartMapper {
 
     int resetEachHour() throws Exception;
 
+    /** ///////////////////    Visitor    /////////////////// **/
+    int insertVisitor(VisitDto dto);
+    int getTodayCnt();
+    int getTotalCnt();
+
 }

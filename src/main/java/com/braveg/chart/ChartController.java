@@ -1,5 +1,6 @@
 package com.braveg.chart;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -17,29 +18,66 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class ChartController {
 
     @Autowired
     ChartService chartService;
 
     @RequestMapping(value = "/")
-    public ModelAndView home() throws Exception {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/index.html");
-        return mav;
+    public ModelAndView home(HttpServletRequest request) throws Exception {
+        HttpSession session = null;
+        try{
+            if( request.getSession(false) == null ) {
+            log.info(" Session not exist => Create Session! ");
+
+            session = request.getSession(true);
+            VisitDto dto = new VisitDto();
+            dto.setVisit_agent(request.getHeader("User-Agent"));
+            dto.setVisit_ip(request.getRemoteAddr());
+            dto.setVisit_refer(request.getHeader("referer"));
+            chartService.insertVisitor(dto);
+        } else {
+            log.info(" Session already exist => Do not create Session! ");
+        }
+        }catch (Exception e){
+            ;
+        }finally {
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("/index.html");
+            return mav;
+        }
+    }
+    @GetMapping(value="/juju/get/today/cnt")
+    public @ResponseBody JSONObject getTodayCnt() throws Exception {
+        JSONObject json =new JSONObject();
+        int cnt = chartService.getTodayCnt();
+        json.put("todayCnt", cnt);
+        return json;
     }
 
-    @GetMapping("/getChartList.ajax")
+    @GetMapping(value="/juju/get/total/cnt")
+    public @ResponseBody JSONObject getTotalCnt() throws Exception {
+        JSONObject json =new JSONObject();
+        int cnt = chartService.getTotalCnt();
+        json.put("totalCnt", cnt);
+        return json;
+    }
+
+    @PostMapping("/getChartList.ajax")
     public @ResponseBody JSONObject getChartList() throws Exception {
         JSONObject json = new JSONObject();
 

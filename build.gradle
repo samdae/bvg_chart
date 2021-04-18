@@ -79,6 +79,7 @@ dependencies {
 	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
 
 
+
 }
 
 test {
