@@ -7,14 +7,14 @@
         SELECT *
         FROM TODAY_RANK
         WHERE stime = DATE_FORMAT(NOW(),'%H')
-        ORDER BY site, ranking
+        ORDER BY site, ranking*1
     </select>
     <!--    일일 순위 LIST    -->
     <select id="getDateRankList" resultType="HashMap">
         SELECT *
         FROM DATE_RANK
         WHERE sdate = DATE_FORMAT(NOW(),'%Y%m%d')
-        ORDER BY site, ranking
+        ORDER BY site, ranking*1
     </select>
     <!--    매시간별 순위    -->
     <insert id="insertEachHour" parameterType="com.braveg.chart.ChartDto">
