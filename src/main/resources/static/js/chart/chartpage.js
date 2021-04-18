@@ -9,7 +9,7 @@ function getChart() {
         method: 'get',
         dataType: 'json',
         success: function(data) {
-            console.log(data.data);
+            //console.log(data.data);
             listSet(data.data);
         }
     });
