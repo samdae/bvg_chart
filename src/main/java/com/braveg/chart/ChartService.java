@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ChartService {
     List<ChartDto> getTodayRankList() throws Exception;
+    List<ChartDto> getRankForGraphList(String site) throws Exception;
     List<ChartDto> getDateRankList() throws Exception;
 
     int insertEachHour(ChartDto dto) throws Exception;

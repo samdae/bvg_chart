@@ -27,7 +27,6 @@ body {
     background: linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
 }
 .jumbotron{
-
     border-radius: 0 !important;
 }
 

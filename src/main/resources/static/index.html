@@ -4,6 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="js/chart/chartpage.js?ver=1"></script>
 <script>
     $(document).ready(function () {
@@ -25,25 +26,25 @@
         $(".stdDate").text(btDay);
     });
 
-function captureBody() {
+    function captureBody() {
         $("#infoArea_a").css("display", "none");
         $("#infoArea_b").css("display", "block");
         $(".check-area").css("display", "none");
-        $("#btnDiv").css("display","none");
-        try{
-            html2canvas(document.querySelector(".container"), { logging: true, letterRendering: 1,  allowTaint: false }
+        $("#btnDiv").css("display", "none");
+        try {
+            html2canvas(document.querySelector(".container"), {logging: true, letterRendering: 1, allowTaint: false}
             ).then(canvas => {
                 var el = document.getElementById("target");
                 el.href = canvas.toDataURL("image/jpeg");
                 el.download = $("#fileDownTime").val() + ' 순위.jpg';
                 el.click();
             });
-        }catch (e){
-        }finally {
+        } catch (e) {
+        } finally {
             $("#infoArea_a").css("display", "block");
             $("#infoArea_b").css("display", "none");
             $(".check-area").css("display", "block");
-            $("#btnDiv").css("display","block");
+            $("#btnDiv").css("display", "block");
         }
     }
 </script>
@@ -54,18 +55,22 @@ function captureBody() {
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RC9EDDVEW"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){
+
+        function gtag() {
             dataLayer.push(arguments);
         }
+
         gtag('js', new Date());
         gtag('config', 'G-5RC9EDDVEW');
     </script>
     <!--  Naver Analytics -->
     <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
     <script type="text/javascript">
-        if(!wcs_add) var wcs_add = {};
+        if (!wcs_add) var wcs_add = {};
         wcs_add["wa"] = "92d730a3d68800";
-        if(window.wcs) { wcs_do();}
+        if (window.wcs) {
+            wcs_do();
+        }
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
@@ -90,7 +95,7 @@ function captureBody() {
             <div><span id="strTime" style="font-size: 1.2em; font-weight: bold"></span>
                 <input type="hidden" id="fileDownTime"/>
             </div>
-            <div style="text-align: right; display: none;" id="btnDiv" >
+            <div style="text-align: right; display: none;" id="btnDiv">
                 <a href="#" class="btn btn-sm btn-outline-secondary my-2" onclick="location.reload();">새로고침</a>
                 <a href="#" class="btn btn-sm btn-outline-secondary my-2" onclick="javascript:captureBody();">캡쳐</a>
             </div>
@@ -156,6 +161,10 @@ function captureBody() {
 
                                         </tbody>
                                     </table>
+
+                                    <div style="width:100%; ">
+                                        <canvas id="chart-area"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +226,6 @@ function captureBody() {
                             <div class="card mb-1">
                                 <div class="card-body">
                                     <p class="card-title">○ 플로</p>
-
                                     <table>
                                         <colgroup>
                                             <col width="10%">
@@ -252,6 +260,8 @@ function captureBody() {
                     </div>
                 </div>
             </div>
+
+
         </div>
 
     </section>
@@ -261,10 +271,14 @@ function captureBody() {
 <footer class="text-muted">
     <div class="container">
 
-        <p class="small text-light"><a target="_blank" href="https://open.kakao.com/o/s41Pxd7c"><img style="width: 100px;" src="../../images/s41Pxd7c.jpeg"/></a><img class="logo" src="../../images/logo.png"/></p>
+        <p class="small text-light">
+            <a target="_blank" href="https://open.kakao.com/o/s41Pxd7c">
+                <img style="width: 100px;" src="../../images/s41Pxd7c.jpeg"/>
+            </a>
+            <img class="logo" src="../../images/logo.png"/></p>
         <br/>
         <p class="small" style="font-size: 100%; !important;">
-            추가 건의사항이나 아이디어는, <br/>
+            추가 건의사항이나 아이디어는 <br/>
             QR코드를 스캔하거나 클릭하여 의견을 공유해주세요 !
         </p>
         <br/><br/><br/>

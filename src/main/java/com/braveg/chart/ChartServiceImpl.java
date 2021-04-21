@@ -21,6 +21,16 @@ public class ChartServiceImpl implements ChartService {
         }
         return list;
     }
+    @Override
+    public List<ChartDto> getRankForGraphList(String site) throws Exception {
+        List<ChartDto> list = null;
+        try{
+            list = chartMapper.getRankForGraphList(site);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     @Override
     public List<ChartDto> getDateRankList() throws Exception {

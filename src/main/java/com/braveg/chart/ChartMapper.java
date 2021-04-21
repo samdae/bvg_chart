@@ -10,6 +10,7 @@ import java.util.List;
 public interface ChartMapper {
     List<ChartDto> getTodayRankList() throws Exception;
     List<ChartDto> getDateRankList() throws Exception;
+    List<ChartDto> getRankForGraphList(String site) throws Exception;
 
     int insertEachHour(ChartDto dto) throws Exception;
     int insertDate(ChartDto dto) throws Exception;

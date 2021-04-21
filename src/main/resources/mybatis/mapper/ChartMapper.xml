@@ -33,6 +33,13 @@
         DELETE FROM TODAY_RANK
     </delete>
 
+    <!-- 사이트별 순위,,그래프그리기,,, LIST    -->
+    <select id="getRankForGraphList" resultType="HashMap">
+        SELECT *
+        FROM DATE_RANK
+        where site = #{site}
+        ORDER BY site, title, sdate;
+    </select>
 
 <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    -->
         <insert id="insertVisitor" parameterType="com.braveg.chart.VisitDto">

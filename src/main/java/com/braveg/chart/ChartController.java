@@ -93,6 +93,24 @@ public class ChartController {
         return json;
     }
 
+
+    @PostMapping("/getRankForGraphList.ajax")
+    public @ResponseBody JSONObject getRankForGraphList(HttpServletRequest request) throws Exception {
+        JSONObject json = new JSONObject();
+String site = request.getParameter("site");
+        System.out.println();
+        List<ChartDto> list = null;
+        list = chartService.getRankForGraphList(site);
+
+        if( list != null && list.size() > 0 ){
+            json.put("data", list);
+        } else {
+            json.put("data", "없다");
+        }
+
+        return json;
+    }
+
 //    @RequestMapping(value = "/chat")
 //    public ModelAndView test() throws Exception {
 //        ModelAndView mav = new ModelAndView();
