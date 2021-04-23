@@ -32,6 +32,7 @@ body {
 
 hr.lineBold {
     border: blue 4px solid;
+    opacity: 100%;
 }
 
 span#strTime {

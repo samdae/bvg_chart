@@ -70,35 +70,35 @@ function setData(data) {
         dateLabels.push(tmpDateLabels[i].sdate);
     }
 
-var dataset = {};
-
-    for (var i = 0; i < tmpTitleLabels.length; i++) {
-        var tmpArray= {};
-        titleLabels.push(tmpTitleLabels[i].title);
-        var titleData = getListFilter(data, 'title', tmpTitleLabels[i].title);
-        console.log("titleData : " + tmpTitleLabels[i].site);
-        console.log(titleData);
-
-        tmpArray['label'] = tmpTitleLabels[i].title;
-        
-        var ranking = new Array();
-console.log(titleData.length);
-        for(var j = 0 ; titleData.length ; j++){
-            // console.log(titleData[j]);
-            // console.log(titleData[j].ranking);
-            console.log(titleData[j]['ranking']);
-            // ranking.push(titleData[j]['ranking']);
-            // ranking.push(titleData[j].ranking);
-        }
-
-        tmpArray['data'] = ranking;
-
-        dataset.push(tmpArray);
-    }
-
-
-    console.log('dataset');
-    console.log(dataset);
+// var dataset = {};
+//
+//     for (var i = 0; i < tmpTitleLabels.length; i++) {
+//         var tmpArray= {};
+//         titleLabels.push(tmpTitleLabels[i].title);
+//         var titleData = getListFilter(data, 'title', tmpTitleLabels[i].title);
+//         console.log("titleData : " + tmpTitleLabels[i].site);
+//         console.log(titleData);
+//
+//         tmpArray['label'] = tmpTitleLabels[i].title;
+//
+//         var ranking = new Array();
+// console.log(titleData.length);
+//         for(var j = 0 ; titleData.length ; j++){
+//             // console.log(titleData[j]);
+//             // console.log(titleData[j].ranking);
+//             console.log(titleData[j]['ranking']);
+//             // ranking.push(titleData[j]['ranking']);
+//             // ranking.push(titleData[j].ranking);
+//         }
+//
+//         tmpArray['data'] = ranking;
+//
+//         dataset.push(tmpArray);
+//     }
+//
+//
+//     console.log('dataset');
+//     console.log(dataset);
 
 
     // dataset
@@ -106,9 +106,6 @@ console.log(titleData.length);
     //  label = title
     //  data  = ranking
     //  borderColor = ?
-
-
-
 
 
 // 우선 컨텍스트를 가져옵니다.
@@ -125,85 +122,66 @@ console.log(titleData.length);
             datasets: [{
                 label: '곡명1',
                 data: [12, 19, 3, 5, 2, 3],
-                borderColor: 'rgb(255,99,234)'
+                borderColor: 'rgb(167,81,81)',
+                fill: false,
+                tension : 0,
+
+
             },
                 {
                     label: '곡명2',
                     data: [1, 2, 3, 5, 2, 3],
-                    borderColor: 'rgba(54, 162, 235, 1)'
+                    borderColor: 'rgb(81,117,141)',
+                    fill: false,
+                    tension : 0,
                 }],
         },
         options: {
-            maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-            scales: {
-                y: {
-                    type: 'linear',
+            responsive : true,
+            plugins: {
+                legend: {
                     display: true,
-                    position: 'left',
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-
-                    // grid line settings
-                    grid: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
-                    },
+                    labels: {
+                        boxWidth : 15,
+                    }
                 }
-            }
+            },
+            responsive: true,
+            title: {
+                display: true,
+                text: '라인 차트 테스트'
+            },
+            tooltips: {enabled : true,
+                mode: 'index',
+                intersect: false,
+                backgroundColor : '#c8b3b3',
+                displayColors : true,
+                rtl : true,
+                xPadding :10,
+                yPadding :10,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+
+                x: {
+                    display: true,
+                },
+                y: {
+                    reverse : true,
+                    display: true,
+                    ticks: {
+                        // min: 0, // minimum value
+                        // max: 100, // minimum value
+
+                    },
+
+                }
+            },
         }
     });
-
-
-    // options: {
-    //     responsive: true,
-    //         interaction: {
-    //         mode: 'index',
-    //             intersect: false,
-    //     },
-    //     stacked: false,
-    //         plugins: {
-    //         title: {
-    //             display: true,
-    //                 text: 'Chart.js Line Chart - Multi Axis'
-    //         }
-    //     },
-    //     scales: {
-    //         y: {
-    //             type: 'linear',
-    //                 display: true,
-    //                 position: 'left',
-    //         },
-    //         y1: {
-    //             type: 'linear',
-    //                 display: true,
-    //                 position: 'right',
-    //
-    //                 // grid line settings
-    //                 grid: {
-    //                 drawOnChartArea: false, // only want the grid lines for one axis to show up
-    //             },
-    //         },
-    //     }
-    // },
-
-    // datasets: [
-    //     {
-    //         label: 'Dataset 1',
-    //         data: Utils.numbers(NUMBER_CFG),
-    //         borderColor: Utils.CHART_COLORS.red,
-    //         backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-    //         yAxisID: 'y',
-    //     },
-    //     {
-    //         label: 'Dataset 2',
-    //         data: Utils.numbers(NUMBER_CFG),
-    //         borderColor: Utils.CHART_COLORS.blue,
-    //         backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-    //         yAxisID: 'y1',
-    //     }
-    // ]
 
 }
 
