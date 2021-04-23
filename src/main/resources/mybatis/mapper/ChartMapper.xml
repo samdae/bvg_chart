@@ -32,6 +32,17 @@
     <delete id="resetEachHour">
         DELETE FROM TODAY_RANK
     </delete>
+    <!--  일간 추이  -->
+    <select id="dailyRankVariation" resultType="HashMap">
+        SELECT * FROM DATE_RANK
+        WHERE  sdate = DATE_FORMAT(DATE_ADD(now(), INTERVAL -1 DAY),'%Y%m%d')
+    </select>
+    <!--  월간 추이  -->
+    <select id="monthlyRankVariation" parameterType="com.braveg.chart.ChartDto" resultType="com.braveg.chart.ChartDto">
+        SELECT * FROM DATE_RANK
+        WHERE sdate BETWEEN DATE_FORMAT(DATE_ADD(now(), INTERVAL -30 DAY),'%Y%m%d') AND  DATE_FORMAT(now(),'%Y%m%d')
+        AND site = #{site}
+    </select>
 
     <!-- 사이트별 순위,,그래프그리기,,, LIST    -->
     <select id="getRankForGraphList" resultType="HashMap">
@@ -57,19 +68,20 @@
             ,   #{visit_refer} AS VISIT_REFER
             ,   #{visit_agent} AS VISIT_AGENT
         FROM VISITOR
-
     </insert>
-
+    <!--   일간 방문자   -->
     <select id="getTodayCnt" resultType="Integer">
         SELECT
             CASE COUNT(*) WHEN 0 THEN 1 ELSE COUNT(*) END AS VISIT_ID
         FROM VISITOR
         WHERE DATE_FORMAT(VISIT_TIME, '%Y%m%d') = DATE_FORMAT(now(), '%Y%m%d')
     </select>
-
+    <!--  전체 방문자  -->
     <select id="getTotalCnt" resultType="Integer">
         SELECT
             CASE COUNT(*) WHEN 0 THEN 1 ELSE COUNT(*) END AS VISIT_ID
         FROM VISITOR
     </select>
+
+
 </mapper>

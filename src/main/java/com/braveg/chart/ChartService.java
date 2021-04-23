@@ -1,5 +1,6 @@
 package com.braveg.chart;
 
+import org.json.simple.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public interface ChartService {
     int insertDate(ChartDto dto) throws Exception;
 
     int resetEachHour() throws Exception;
+
+    List<ChartDto>dailyRankVariation() throws Exception;
+    JSONObject monthlyRankVariation(ChartDto dto) throws Exception;
 
     /** ///////////////////    Visitor    /////////////////// **/
     int insertVisitor(VisitDto dto);

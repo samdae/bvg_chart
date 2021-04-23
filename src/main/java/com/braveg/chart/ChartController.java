@@ -96,17 +96,23 @@ public class ChartController {
 
     @PostMapping("/getRankForGraphList.ajax")
     public @ResponseBody JSONObject getRankForGraphList(HttpServletRequest request) throws Exception {
-        JSONObject json = new JSONObject();
-String site = request.getParameter("site");
-        System.out.println();
-        List<ChartDto> list = null;
-        list = chartService.getRankForGraphList(site);
+        String site = request.getParameter("site");
 
-        if( list != null && list.size() > 0 ){
-            json.put("data", list);
-        } else {
-            json.put("data", "없다");
-        }
+        ChartDto dto = new ChartDto();
+        dto.setSite(site);
+
+        JSONObject json = chartService.monthlyRankVariation(dto);
+        System.out.println("Controller");
+        System.out.println(json);
+        JSONObject test = new JSONObject();
+        test.put("TEST", "test-data");
+        test.put("TEST1", "test-data1");
+        test.put("TEST2", "test-data2");
+        JSONArray test1 = new JSONArray();
+        test1.add("1");
+        test1.add("2");
+        test1.add("3");
+        test.put("TEST3", test1);
 
         return json;
     }
