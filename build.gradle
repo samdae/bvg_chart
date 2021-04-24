@@ -78,6 +78,8 @@ dependencies {
 	// mariadb
 	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
 
+	compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.0.4.RELEASE'
+
 
 
 }

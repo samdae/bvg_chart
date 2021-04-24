@@ -102,17 +102,6 @@ public class ChartController {
         dto.setSite(site);
 
         JSONObject json = chartService.monthlyRankVariation(dto);
-        System.out.println("Controller");
-        System.out.println(json);
-        JSONObject test = new JSONObject();
-        test.put("TEST", "test-data");
-        test.put("TEST1", "test-data1");
-        test.put("TEST2", "test-data2");
-        JSONArray test1 = new JSONArray();
-        test1.add("1");
-        test1.add("2");
-        test1.add("3");
-        test.put("TEST3", test1);
 
         return json;
     }

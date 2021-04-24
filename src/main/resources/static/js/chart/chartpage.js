@@ -1,6 +1,6 @@
 $(document).ready(function () {
     getChart();
-    getCharForGraph('melon');
+    getCharForGraph('flo');
     $("#btnDiv").css("display", "block")
 });
 
@@ -25,7 +25,7 @@ function getCharForGraph(site) {
         dataType: 'json',
         data: param,
         success: function (data) {
-            setData(data.data);
+            setData(data);
         }
     });
 }
@@ -60,55 +60,7 @@ function _img(title) {
 
 function setData(data) {
 
-
-    // console.log(data.sdate);
-    var tmpDateLabels = getUniqueObjectArray(data, 'sdate');
-    var tmpTitleLabels = getUniqueObjectArray(data, 'title');
-    var dateLabels = new Array();
-    var titleLabels = new Array();
-    for (var i = 0; i < tmpDateLabels.length; i++) {
-        dateLabels.push(tmpDateLabels[i].sdate);
-    }
-
-// var dataset = {};
-//
-//     for (var i = 0; i < tmpTitleLabels.length; i++) {
-//         var tmpArray= {};
-//         titleLabels.push(tmpTitleLabels[i].title);
-//         var titleData = getListFilter(data, 'title', tmpTitleLabels[i].title);
-//         console.log("titleData : " + tmpTitleLabels[i].site);
-//         console.log(titleData);
-//
-//         tmpArray['label'] = tmpTitleLabels[i].title;
-//
-//         var ranking = new Array();
-// console.log(titleData.length);
-//         for(var j = 0 ; titleData.length ; j++){
-//             // console.log(titleData[j]);
-//             // console.log(titleData[j].ranking);
-//             console.log(titleData[j]['ranking']);
-//             // ranking.push(titleData[j]['ranking']);
-//             // ranking.push(titleData[j].ranking);
-//         }
-//
-//         tmpArray['data'] = ranking;
-//
-//         dataset.push(tmpArray);
-//     }
-//
-//
-//     console.log('dataset');
-//     console.log(dataset);
-
-
-    // dataset
-
-    //  label = title
-    //  data  = ranking
-    //  borderColor = ?
-
-
-// 우선 컨텍스트를 가져옵니다.
+    // 우선 컨텍스트를 가져옵니다.
     var ctx = document.getElementById("chart-area").getContext('2d');
     /*
     - Chart를 생성하면서,
@@ -117,25 +69,13 @@ function setData(data) {
     */
     var chart = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: dateLabels,
-            datasets: [{
-                label: '곡명1',
-                data: [12, 19, 3, 5, 2, 3],
-                borderColor: 'rgb(167,81,81)',
-                fill: false,
-                tension : 0,
-
-
-            },
-                {
-                    label: '곡명2',
-                    data: [1, 2, 3, 5, 2, 3],
-                    borderColor: 'rgb(81,117,141)',
-                    fill: false,
-                    tension : 0,
-                }],
-        },
+        // type: 'bar',
+        // type: 'doughnut',
+        // type: 'radar',
+        // type: 'polarArea',
+        // type: 'bubble',
+        // type: 'scatter',
+        data: data,
         options: {
             responsive : true,
             plugins: {
@@ -182,42 +122,4 @@ function setData(data) {
             },
         }
     });
-
 }
-
-
-function getUniqueObjectArray(array, key) {
-    var tempArray = [];
-    var resultArray = [];
-    for (var i = 0; i < array.length; i++) {
-        var item = array[i];
-        if (tempArray.includes(item[key])) {
-            continue;
-        } else {
-            resultArray.push(item);
-            tempArray.push(item[key]);
-        }
-    }
-    return resultArray;
-}
-
-function drawGraph(site) {
-
-}
-
-function getListFilter(data, key, value) {
-
-    console.log(data);
-
-    var returnObject = new Array();
-    $.each(data, function () {
-        if (this[key] == value) {
-            console.log(value);
-            returnObject.push(this);
-        }
-    });
-
-    return returnObject;
-}
-
-
