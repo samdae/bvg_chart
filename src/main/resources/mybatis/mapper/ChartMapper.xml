@@ -39,9 +39,16 @@
     </select>
     <!--  월간 추이  -->
     <select id="monthlyRankVariation" parameterType="com.braveg.chart.ChartDto" resultType="com.braveg.chart.ChartDto">
-        SELECT * FROM DATE_RANK
-        WHERE sdate BETWEEN DATE_FORMAT(DATE_ADD(now(), INTERVAL -30 DAY),'%Y%m%d') AND  DATE_FORMAT(now(),'%Y%m%d')
-        AND site = #{site}
+        SELECT TEMT.SDATE, TEMT.TITLE, C.RANKING
+        FROM
+        (
+            SELECT A.TITLE, B.SDATE FROM
+            (SELECT TITLE FROM DATE_RANK WHERE SITE = #{site} GROUP BY TITLE) A ,
+            ( SELECT SDATE  FROM DATE_RANK  GROUP BY SDATE) B
+        ) TEMT
+        LEFT OUTER JOIN (SELECT * FROM DATE_RANK WHERE SITE = #{site}) C
+        ON TEMT.TITLE = C.TITLE
+        AND TEMT.SDATE = C.SDATE
     </select>
 
     <!-- 사이트별 순위,,그래프그리기,,, LIST    -->

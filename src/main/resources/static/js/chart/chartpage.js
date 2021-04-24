@@ -1,7 +1,7 @@
 $(document).ready(function () {
     getChart();
-    getCharForGraph('flo');
-    $("#btnDiv").css("display", "block")
+    getCharForGraph('melon');
+    $("#btnDiv").css("display", "block");
 });
 
 function getChart() {
@@ -57,6 +57,7 @@ function _img(title) {
     if (title.indexOf("(New Version)") > -1) return "x67e-qnvj931opqwb.jpg";
 }
 
+var chart;
 
 function setData(data) {
 
@@ -67,57 +68,68 @@ function setData(data) {
     - ctx를 첫번째 argument로 넘겨주고,
     - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다.
     */
-    var chart = new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: 'line',
-        // type: 'bar',
-        // type: 'doughnut',
-        // type: 'radar',
-        // type: 'polarArea',
-        // type: 'bubble',
-        // type: 'scatter',
         data: data,
         options: {
+            spanGaps: true,
             responsive : true,
+            pointBorderWidth : 7,
             plugins: {
                 legend: {
                     display: true,
                     labels: {
-                        boxWidth : 15,
-                    }
-                }
-            },
-            responsive: true,
-            title: {
-                display: true,
-                text: '라인 차트 테스트'
-            },
-            tooltips: {enabled : true,
-                mode: 'index',
-                intersect: false,
-                backgroundColor : '#c8b3b3',
-                displayColors : true,
-                rtl : true,
-                xPadding :10,
-                yPadding :10,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            scales: {
+                        usePointStyle : true,
+                        boxWidth : 5,
+                    },
+                    padding : 30,
+                },
+                tooltip: {
+                    enabled : true,
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor : '#aeaeae',
+                    displayColors : true,
+                    rtl : false,
+                    padding :15,
+                    usePointStyle :  true,
+                    titleFont :{
+                        size : 20
+                    },
+                    bodyFont : {
+                        size : 13
+                    },
+                    bodySpacing : 5,
+                    borderWidth : 7,
+                    boxWidth: 7,
+                    bodyAlign : 'right',
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.dataset.label || '';
 
+                            if (label) {
+                                label += '    ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.parsed.y +"위";
+                            }
+                            return label;
+                        }
+                    }
+                },
+           },
+            pointHoverBorderWidth : 5,
+            scales: {
                 x: {
                     display: true,
                 },
                 y: {
                     reverse : true,
                     display: true,
-                    ticks: {
-                        // min: 0, // minimum value
-                        // max: 100, // minimum value
-
-                    },
-
+                    ticks : {
+                        autoSkip :true,
+                        autoSkipPadding : 10,
+                    }
                 }
             },
         }
