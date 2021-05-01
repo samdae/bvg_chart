@@ -99,7 +99,7 @@ function drawDailyChart(data, site, title){
     var dataArray = new Array();
 
     for(var i = 0 ; i < data.length ; i++){
-       labels.push(data[i].stime);
+       labels.push(data[i].stime+'시');
         dataArray.push(data[i].ranking);
     }
 
@@ -199,7 +199,7 @@ function drawDailyChart(data, site, title){
         case 'bugs' : site='벅스'; break;
     }
 
-    $("#daily-modal-info").text("❏ ["+site + "] " + title +" 시간대별 변동추이 ")
+    $("#daily-modal-info").text("❏ ["+site + "] " + title +"")
     $('#dailyModal').modal('show');
 
 }
