@@ -92,7 +92,6 @@ public class ChartServiceImpl implements ChartService {
             // 곡명 중복 제거
             Object[] titles = hashSet1.toArray();
 
-
             // set dateLabels
             for (Object q : dateList) {
                 dateLables.add(q.toString());
@@ -106,7 +105,6 @@ public class ChartServiceImpl implements ChartService {
                 JSONObject obj = new JSONObject();
                 org.json.simple.JSONArray rank = new org.json.simple.JSONArray();
                 String x = titles[i].toString();
-                //System.out.println(x);
 
                 for (ChartDto d : list) {
                     if (x.equals(d.getTitle())) {
@@ -130,7 +128,7 @@ public class ChartServiceImpl implements ChartService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //System.out.println(data);
+
         return data;
     }
 

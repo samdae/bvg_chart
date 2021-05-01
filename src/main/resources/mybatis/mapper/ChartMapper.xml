@@ -60,7 +60,10 @@
     </select>
     <!--  월간 추이  -->
     <select id="monthlyRankVariation" parameterType="com.braveg.chart.ChartDto" resultType="com.braveg.chart.ChartDto">
-        SELECT TEMT.SDATE, TEMT.TITLE, C.RANKING
+        SELECT
+               DATE_FORMAT(TEMT.SDATE, '%m-%d') AS SDATE
+             , TEMT.TITLE
+             , C.RANKING
         FROM
         (
             SELECT A.TITLE, B.SDATE FROM
