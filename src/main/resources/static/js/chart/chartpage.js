@@ -153,12 +153,6 @@ function drawDailyChart(data, site, title){
                     boxWidth: 7,
                     bodyAlign : 'right',
                     callbacks: {
-                        title: function(context) {
-                            var title = context[0].label || '시';
-                            title += '시';
-                            return title;
-                        },
-
                         label: function(context) {
                             var label = context.dataset.label || '';
 
