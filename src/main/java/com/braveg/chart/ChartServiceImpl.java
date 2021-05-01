@@ -106,7 +106,7 @@ public class ChartServiceImpl implements ChartService {
                 JSONObject obj = new JSONObject();
                 org.json.simple.JSONArray rank = new org.json.simple.JSONArray();
                 String x = titles[i].toString();
-                System.out.println(x);
+                //System.out.println(x);
 
                 for (ChartDto d : list) {
                     if (x.equals(d.getTitle())) {
@@ -130,7 +130,7 @@ public class ChartServiceImpl implements ChartService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(data);
+        //System.out.println(data);
         return data;
     }
 

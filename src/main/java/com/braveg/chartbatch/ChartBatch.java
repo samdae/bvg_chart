@@ -295,6 +295,54 @@ public class ChartBatch {
 
         return list;
     }
+/*
+Youtube Music Entity
+{
+    "context": {
+        "client": {
+            "clientName":"WEB_REMIX",
+            "clientVersion": 0.1,
+            "hl":"ko",
+            "gl":"KR",
+            "experimentIds": [],
+            "experimentsToken": ,
+            "browserName":"Safari",
+            "deviceMake":"apple",
+            "browserVersion": "14.0.3",
+            "osName":"Macintosh",
+            "osVersion": "10_15_6",
+            "platform":"DESKTOP",
+            "utcOffsetMinutes": 540,
+            "locationInfo": {
+                "locationPermissionAuthorizationStatus":"LOCATION_PERMISSION_AUTHORIZATION_STATUS_UNSUPPORTED"
+            },
+            "musicAppInfo": {
+                "musicActivityMasterSwitch":"MUSIC_ACTIVITY_MASTER_SWITCH_INDETERMINATE",
+                "musicLocationMasterSwitch":"MUSIC_LOCATION_MASTER_SWITCH_INDETERMINATE",
+                "pwaInstallabilityStatus":"PWA_INSTALLABILITY_STATUS_UNKNOWN"
+            }
+        },
+        "capabilities": {},
+        "request": {
+            "internalExperimentFlags": [],
+            "sessionIndex": 0
+        },
+        "clickTracking": {
+            "clickTrackingParams":"IhMIqJG5_ND97wIV0ndgCh0pXwWnMghleHRlcm5hbA=="
+        },
+        "activePlayers": {},
+        "user": {
+            "enableSafetyMode": false
+        }
+    },
+    "browseId":"VLPL4fGSI1pDJn6jXS_Tv_N9B8Z0HTRVJE0m",
+    "browseEndpointContextSupportedConfigs": {
+        "browseEndpointContextMusicConfig": {
+            "pageType":"MUSIC_PAGE_TYPE_PLAYLIST"
+        }
+    }
+}
+*/
     /** YOUTUBE */
     public List<ChartDto> youtube(List<ChartDto> list)  throws Exception {
         String url = "https://charts.youtube.com/youtubei/v1/browse?alt=json&key=AIzaSyCzEW7JUJdSql0-2V4tHUb6laYm4iAE_dM";
