@@ -15,7 +15,7 @@ public interface ChartService {
 
     int resetEachHour() throws Exception;
 
-    List<ChartDto>dailyRankVariation() throws Exception;
+    List<ChartDto>dailyRankVariation(ChartDto dto) throws Exception;
     JSONObject monthlyRankVariation(ChartDto dto) throws Exception;
 
     /** ///////////////////    Visitor    /////////////////// **/

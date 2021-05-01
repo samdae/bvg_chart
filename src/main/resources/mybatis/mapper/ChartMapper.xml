@@ -2,18 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.braveg.chart.ChartMapper">
-    <!--    매시간별 순위 LIST    -->
+
+    <select id="getTodayRankList" resultType="HashMap">
+        SELECT A.site, A.title , A.ranking, DR.ranking AS yRanking, (DR.ranking - A.ranking) AS cRanking
+        FROM TODAY_RANK A
+        LEFT OUTER JOIN DATE_RANK DR
+        ON A.SITE  = DR.SITE
+        AND A.TITLE = DR.TITLE
+        AND DR.SDATE  =  DATE_FORMAT(DATE_ADD(NOW(), interval -1 day),'%Y%m%d')
+        WHERE STIME = DATE_FORMAT(NOW(),'%H')
+        ORDER BY A.SITE, A.RANKING*1
+    </select>
+    <!--    매시간별 순위 LIST
     <select id="getTodayRankList" resultType="HashMap">
         SELECT *
         FROM TODAY_RANK
         WHERE stime = DATE_FORMAT(NOW(),'%H')
         ORDER BY site, ranking*1
-    </select>
+    </select> -->
     <!--    일일 순위 LIST    -->
     <select id="getDateRankList" resultType="HashMap">
         SELECT *
         FROM DATE_RANK
         WHERE sdate = DATE_FORMAT(NOW(),'%Y%m%d')
+        ORDER BY site, ranking*1
+    </select>
+
+    <!--    하루 순위 LIST    -->
+    <select id="getYstDayRankList" resultType="HashMap">
+        SELECT *
+        FROM DATE_RANK
+        WHERE sdate = DATE_FORMAT(date_add(NOW(), interval -1 day),'%Y%m%d')
         ORDER BY site, ranking*1
     </select>
     <!--    매시간별 순위    -->
@@ -33,9 +52,11 @@
         DELETE FROM TODAY_RANK
     </delete>
     <!--  일간 추이  -->
-    <select id="dailyRankVariation" resultType="HashMap">
-        SELECT * FROM DATE_RANK
-        WHERE  sdate = DATE_FORMAT(DATE_ADD(now(), INTERVAL -1 DAY),'%Y%m%d')
+    <select id="dailyRankVariation" parameterType="com.braveg.chart.ChartDto" resultType="com.braveg.chart.ChartDto">
+       SELECT stime, ranking
+       FROM TODAY_RANK
+       WHERE SITE = #{site} and title = #{title}
+       order by stime
     </select>
     <!--  월간 추이  -->
     <select id="monthlyRankVariation" parameterType="com.braveg.chart.ChartDto" resultType="com.braveg.chart.ChartDto">

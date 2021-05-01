@@ -8,10 +8,17 @@ body {
     background-color: #2c3740;
 }
 
-.jumbotron .container{
+.jumbotron .container {
     max-width: 55em !important;
 }
 
+table tr{
+    cursor: pointer;
+}
+table:hover tbody tr:hover td {
+    background: #f1feff;
+    color: black;
+}
 .color {
     width: 10%;
     height: 10%;
@@ -26,7 +33,8 @@ body {
     background: -moz-linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
     background: linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
 }
-.jumbotron{
+
+.jumbotron {
     border-radius: 0 !important;
 }
 
@@ -106,6 +114,13 @@ div.card {
 
 }
 
+span#daily-modal-info{
+    font-size: 0.8em;
+    font-family: 'Gothic A1', sans-serif;
+
+}
+
+
 .album {
     width: 100%;
 }
@@ -159,15 +174,15 @@ footer {
     width: 100px;
 }
 
-.container{
-    padding-top : 20px;
-    padding-left :20px;
+.container {
+    padding-top: 20px;
+    padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
 }
 
 .appear {
-    display : block;
+    display: block;
     animation: fade-in 0.5s;
     animation-fill-mode: forwards;
 }
@@ -176,6 +191,7 @@ footer {
     animation: fade-out 0.5s;
     animation-fill-mode: forwards;
 }
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -196,24 +212,37 @@ footer {
 }
 
 
+button.nav-link {
+
+    font-family: 'Gothic A1', sans-serif;
+    width: 30%;
+    font-size: 0.8em !important;
+}
+
 /*a.btn:hover {*/
 /*    color: #fff !important;*/
 /*    text-decoration: none;*/
 /*}*/
 
-a.btn{
+a.btn {
     width: 100px;
     font-family: 'Gothic A1', sans-serif;
-    font-size :0.8em;
+    font-size: 0.8em;
 }
+
 /* PC (해상도 1024px)*/
-@media all and (min-width:1024px) { /*스타일입력*/
-    iframe{
+@media all and (min-width: 1024px) {
+    /*스타일입력*/
+    div#canvas-area {
+        width: 100%;
+    }
+
+    iframe {
         border: 0px;
-        padding : 10px;
+        padding: 10px;
         position: fixed;
         right: 7%;
-        top : 10%;
+        top: 10%;
         text-align: center;
         /*width: 70px;*/
         height: 600px;
@@ -224,7 +253,7 @@ a.btn{
 
 
     .floating {
-        padding : 10px;
+        padding: 10px;
         background-color: #f9f9f9;
         border: 0px solid #000;
         position: fixed;
@@ -240,58 +269,23 @@ a.btn{
         width: 50px;
     }
 
-    .check-area{
-        font-size : 0.8em;
-    }
-    /* The Modal (background) */
-    .modal {
-        font-family: 'Gothic A1', sans-serif;
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    .check-area {
+        font-size: 0.8em;
     }
 
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 400px; /* Could be more or less, depending on screen size */
-    }
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right !important;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
 
 
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
-@media all and (min-width:768px) and (max-width:1023px) {
+@media all and (min-width: 768px) and (max-width: 1023px) {
 
-    iframe{
+    iframe {
         border: 0px;
-        padding : 10px;
+        padding: 10px;
         position: fixed;
         right: 5%;
-        top : 10%;
+        top: 10%;
         text-align: center;
         /*width: 70px;*/
         height: 80%;
@@ -302,7 +296,7 @@ a.btn{
 
 
     .floating {
-        padding : 10px;
+        padding: 10px;
         background-color: #f9f9f9;
         border: 0px solid #000;
         position: fixed;
@@ -316,60 +310,24 @@ a.btn{
     }
 
 
-    /* The Modal (background) */
-    .modal {
-        font-family: 'Gothic A1', sans-serif;
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 400px; /* Could be more or less, depending on screen size */
-    }
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right !important;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
 
 
 
 }
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
-@media all and (max-width:767px) {
+@media all and (max-width: 767px) {
 
-    section{
+    section {
         width: 100%;
     }
 
-    iframe{
+    iframe {
         border: 0px;
-        padding : 10px;
+        padding: 10px;
         position: fixed;
         left: 0;
-        top : 0;
+        top: 0;
         text-align: center;
         width: 100%;
         height: 600px;
@@ -378,7 +336,7 @@ a.btn{
 
 
     .floating {
-        padding : 10px;
+        padding: 10px;
         background-color: #f9f9f9;
         border: 0px solid #000;
         position: fixed;
@@ -394,58 +352,69 @@ a.btn{
 
     }
 
-    /* The Modal (background) */
-    .modal {
-        font-family: 'Gothic A1', sans-serif;
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
 
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 95%; /* Could be more or less, depending on screen size */
-    }
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right !important;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    h1.title{
-        font-size : 1.7em;
+    h1.title {
+        font-size: 1.7em;
     }
 
 
-    a.btn{
+    a.btn {
         text-align: center;
         font-size: 0.7em;
         width: 90px;
         margin-top: 5px;
     }
 
-    canvas#chart-area{
-        width: 500px;
+    td.rank {
+        width: 20%;
+    }
+
+    td.tdImg {
+        width: 20%;
+    }
+
+    img.rankImg {
+        width: 100%;
+        /*height: 50px;*/
+    }
+
+    div#canvas-area {
+        width: 600px;
+    }
+
+    div#daily-canvas-area {
+        width: 600px;
+    }
+
+    span#daily-modal-info{
+        font-size: 0.7em;
+        font-family: 'Gothic A1', sans-serif;
+
     }
 
 
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+
+    ::-webkit-scrollbar:vertical {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar:horizontal {
+        height: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .5);
+        border-radius: 10px;
+        border: 2px solid #ffffff;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
 }
+

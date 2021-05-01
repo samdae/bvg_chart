@@ -13,4 +13,6 @@ public class ChartDto {
     private String name;
     private String img;
     private String ranking;
+    private String cRanking;
+    private String yRanking;
 }

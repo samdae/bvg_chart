@@ -30,13 +30,20 @@
         $(".stdDate").text(btDay);
 
 
+        $(".close").click(function(){
+            $("#dailyModal").modal('hide');
+            if(dailyChart != "" && dailyChart != undefined){
+                dailyChart.destroy();
+            }
+        })
+
         $("a[name=card-graph]").click(function () {
 
             $("a[name=card-graph]").each(function () {
                 $(this).removeClass("active");
             })
             $(this).addClass("active");
-            chart.destroy();
+            monthlyChart.destroy();
             getCharForGraph($(this).find("input[name=site-name]").val());
         });
 
@@ -59,6 +66,8 @@
 
           }
         })
+
+
     });
 
     function captureBody() {
@@ -82,6 +91,7 @@
             $("#btnDiv").css("display", "block");
         }
     }
+
 
 
 </script>
@@ -123,9 +133,32 @@
 </head>
 
 <body>
+
+
 <main role="main">
     <section class="jumbotron text-center">
         <div class="container">
+
+            <div class="modal fade bd-example-modal-lg" id="dailyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dailyModalLabel"><span id="daily-modal-info"></span></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div style="width:100%;overflow-x: scroll;">
+                                <div id="daily-canvas-area">
+                                    <canvas id="daily-area"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <hr class="lineBold"/>
             <h1 class="title">브레이브걸스 <br/>음원사이트별 순위</h1>
             <hr class="lineBold"/>
@@ -152,20 +185,20 @@
             <div style="margin:10px;">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link " id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#nav-rank"
-                                type="button" role="tab" aria-controls="nav-rank" aria-selected="false">순위
-                        </button>
-                        <button class="nav-link active" id="nav-graph-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-graph" type="button" role="tab" aria-controls="nav-graph"
-                                aria-selected="true">그래프
-                        </button>
-                        <!--                        <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">순위</button>-->
-                        <!--                        <button class="nav-link " id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button" role="tab" aria-controls="nav-graph" aria-selected="false">그래프</button>-->
+<!--                        <button class="nav-link" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#nav-rank"-->
+<!--                                type="button" role="tab" aria-controls="nav-rank" aria-selected="false">순위-->
+<!--                        </button>-->
+<!--                        <button class="nav-link active" id="nav-graph-tab" data-bs-toggle="tab"-->
+<!--                                data-bs-target="#nav-graph" type="button" role="tab" aria-controls="nav-graph"-->
+<!--                                aria-selected="true">그래프-->
+<!--                        </button>-->
+                                                <button class="nav-link active" id="nav-rank-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-rank" aria-selected="true">순위</button>
+                                                <button class="nav-link " id="nav-graph-tab" data-bs-toggle="tab" data-bs-target="#nav-graph" type="button" role="tab" aria-controls="nav-graph" aria-selected="false">그래프</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade" id="nav-rank" role="tabpanel" aria-labelledby="nav-rank-tab">
-                        <!--                    <div class="tab-pane fade show active" id="nav-rank" role="tabpanel" aria-labelledby="nav-rank-tab">-->
+<!--                    <div class="tab-pane fade" id="nav-rank" role="tabpanel" aria-labelledby="nav-rank-tab">-->
+                                            <div class="tab-pane fade show active" id="nav-rank" role="tabpanel" aria-labelledby="nav-rank-tab">
 
                         <div class="check-area pt-2">
                             <div class="mt-3 mb-3">
@@ -305,8 +338,8 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade show active" id="nav-graph" role="tabpanel"
-                         aria-labelledby="nav-graph-tab">
+<!--                    <div class="tab-pane fade show active" id="nav-graph" role="tabpanel" aria-labelledby="nav-graph-tab">-->
+                    <div class="tab-pane fade show" id="nav-graph" role="tabpanel" aria-labelledby="nav-graph-tab">
                         <div class="mt-3 mb-3">
                             <a href="#" class="btn btn-outline-info active" data-bs-toggle="button" autocomplete="off"  name="card-graph">멜론
                                 <input type="hidden" name="site-name" value="melon" style="display: none;"/>
@@ -327,17 +360,19 @@
                                 <input type="hidden" name="site-name" value="vibe"/>
                             </a>
                         </div>
-                        <div style="width:100%; ">
-                            <canvas id="chart-area"></canvas>
+                        <div style="width:100%;overflow-x: scroll;">
+                            <div id="canvas-area">
+                                <canvas id="chart-area"></canvas>
+                            </div>
                         </div>
 
 
                     </div>
-                    <!--                    <div class="tab-pane fade" id="nav-graph" role="tabpanel" aria-labelledby="nav-graph-tab">2222</div>-->
-
                 </div>
             </div>
+
         </div>
+
 
     </section>
 

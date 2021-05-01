@@ -62,8 +62,8 @@ public class ChartServiceImpl implements ChartService {
     }
 
     @Override
-    public List<ChartDto> dailyRankVariation() throws Exception {
-        return chartMapper.dailyRankVariation();
+    public List<ChartDto> dailyRankVariation(ChartDto dto) throws Exception {
+        return chartMapper.dailyRankVariation(dto);
     }
 
     @Override

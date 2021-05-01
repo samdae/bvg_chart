@@ -106,6 +106,31 @@ public class ChartController {
         return json;
     }
 
+    @PostMapping("/getDailyGraphList.ajax")
+    public @ResponseBody JSONObject getDailyGraphList(HttpServletRequest request) throws Exception {
+
+
+        String site = request.getParameter("site");
+        String title = request.getParameter("title");
+
+        ChartDto dto = new ChartDto();
+        dto.setSite(site);
+        dto.setTitle(title);
+
+        JSONObject json = new JSONObject();
+
+        List<ChartDto> list = null;
+        list = chartService.dailyRankVariation(dto);
+
+        if( list != null && list.size() > 0 ){
+            json.put("data", list);
+        } else {
+            json.put("data", "null");
+        }
+
+        return json;
+    }
+
 //    @RequestMapping(value = "/chat")
 //    public ModelAndView test() throws Exception {
 //        ModelAndView mav = new ModelAndView();
