@@ -1,6 +1,5 @@
 var platform ;
 $(document).ready(function () {
-
     var filter = "win16|win32|win64|mac|macintel";
     if(navigator.platform){
         if(0 > filter.indexOf(navigator.platform.toLowerCase())){
@@ -9,14 +8,10 @@ $(document).ready(function () {
             platform = "P";
         }
     }
-
-
-
     getChart();
     getCharForGraph('melon');
     $("#btnDiv").css("display", "block");
 });
-
 function getChart() {
     $.ajax({
         url: '/getChartList.ajax',
@@ -26,7 +21,6 @@ function getChart() {
             listSet(data.data);
         }
     });
-
 }
 
 function getCharForGraph(site) {
