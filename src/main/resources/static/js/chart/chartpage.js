@@ -1,5 +1,6 @@
 var platform ;
 $(document).ready(function () {
+
     var filter = "win16|win32|win64|mac|macintel";
     if(navigator.platform){
         if(0 > filter.indexOf(navigator.platform.toLowerCase())){
@@ -44,6 +45,7 @@ function listSet(data) {
     $("#flo").empty();
     $("#vibe").empty();
     $("#youtube").empty();
+    $("#melon-r").empty();
 
 
     for (var i = 0; i < data.length; i++) {
@@ -179,12 +181,13 @@ function drawDailyChart(data, site, title){
     });
 
     switch (site) {
-        case 'melon' : site='멜론'; break;
+        case 'melon' : site='멜론(24Hits)'; break;
         case 'youtube' : site='유튜브'; break;
         case 'genie' : site='지니'; break;
         case 'flo'   : site='플로'; break;
         case 'vibe' : site='바이브'; break;
         case 'bugs' : site='벅스'; break;
+        case 'melon-r' : site='멜론(실시간)'; break;
     }
 
     $("#daily-modal-info").text("❏ ["+site + "] " + title +"")
@@ -198,6 +201,7 @@ function _img(title) {
     if (title.indexOf("(We Ride)") > -1) return "x31j-fjf329bn20gnv.jpg";
     if (title.indexOf("하이힐") > -1) return "x87m-ajfie319nmg9.jpg";
     if (title.indexOf("(New Version)") > -1) return "x67e-qnvj931opqwb.jpg";
+    if (title.indexOf("치맛바람") > -1 || title.indexOf("mat") > -1) return "w83o-fqmv491qom0.png";
 }
 
 var monthlyChart;

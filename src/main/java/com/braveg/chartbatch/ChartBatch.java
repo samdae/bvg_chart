@@ -5,6 +5,7 @@ import com.braveg.chart.ChartService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -38,6 +39,7 @@ public class ChartBatch {
     public List<ChartDto> getList() throws Exception {
         List<ChartDto> list = new ArrayList<>();
         list = this.melon(list);
+        list = this.melonRealTime(list);
         list = this.bugs(list);
         list = this.genie(list);
         list = this.flo(list);
@@ -109,7 +111,7 @@ public class ChartBatch {
 // TODO ===========================================================================================
 
 
-    /** MELON */
+    /** MELON 24 Hits */
     public List<ChartDto> melon(List<ChartDto> list) throws Exception {
         String url = "https://www.melon.com/chart/index.htm";
 
@@ -134,6 +136,48 @@ public class ChartBatch {
                 list.add(chartDto);
             }
         }
+        return list;
+    }
+
+        /** MELON Real Time  */
+    public List<ChartDto> melonRealTime(List<ChartDto> list) throws Exception {
+        String url = "https://m2.melon.com/cds/chart/mobile2/chartrealtime_listPaging.json?startIndex=1&pageSize=100";
+
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet req = new HttpGet(url);
+        HttpResponse response = client.execute(req);
+        ResponseHandler<String> handler = new BasicResponseHandler();
+        String body = handler.handleResponse(response);
+
+        JSONParser parser = new JSONParser();
+        // json body
+        JSONObject json1 = (JSONObject) parser.parse(body);
+        // list array
+        JSONArray array = (JSONArray) parser.parse(json1.get("rowsList").toString());
+
+        ChartDto chartDto = null;
+
+        for( Object o : array ) {
+                JSONObject j = (JSONObject) o;
+                String 노래제목 = j.get("SONGNAMEWEBLIST").toString();
+                String 가수    = j.get("ARTISTNAMEBASKET").toString();
+                String 앨범제목 = j.get("ALBUMNAMEWEBLIST").toString();
+                String 순위    = j.get("CURRANK").toString();
+
+                if( 가수.contains("브레이브걸스") ){
+                    노래제목 = 노래제목.replaceAll("&#39;", "`");
+                    앨범제목 = 앨범제목.replaceAll("&#39;", "`");
+                    System.out.println( 순위 + " ==> " + 노래제목 + "  |  " + 가수 + "  |  " + 앨범제목 );
+
+                    chartDto = new ChartDto();
+                    chartDto.setRanking(순위);
+                    chartDto.setTitle(노래제목);
+                    chartDto.setName(가수);
+                    chartDto.setSite("melon-r");
+                    list.add(chartDto);
+                }
+            }
+
         return list;
     }
 
