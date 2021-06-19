@@ -49,7 +49,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.json/json
     compile group: 'org.json', name: 'json', version: '20180813'
 
-    // web socket
+	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+	// web socket
     dependencies {
         compile('org.projectlombok:lombok')
         compile("org.springframework.boot:spring-boot-starter-websocket")
@@ -59,6 +61,7 @@ dependencies {
         compile("org.webjars:jquery:3.1.0")
         testCompile("org.springframework.boot:spring-boot-starter-test")
     }
+
 
 	// ############## JPA TUTORIALS ##############
 	// JPA Hibernate
@@ -72,8 +75,9 @@ dependencies {
 //	compile("com.h2database:h2:")
 
 
+
   	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
-    compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('mysql:mysql-connector-java')
 	// mariadb
 	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'

@@ -1,5 +1,6 @@
 package com.braveg.chartbatch;
 
+import com.braveg.api.ApiAdapters;
 import com.braveg.chart.ChartDto;
 import com.braveg.chart.ChartService;
 import org.apache.http.HttpResponse;
@@ -30,11 +31,22 @@ import java.util.logging.Logger;
 
 @Component
 public class ChartBatch {
+    private ChartService chartService;
+    private ApiAdapters apiAdapters;
 
     @Autowired
-    ChartService chartService;
+    public ChartBatch(ChartService chartService, ApiAdapters apiAdapters){
+        this.chartService = chartService;
+        this.apiAdapters = apiAdapters;
+    }
+
 
     private Logger logger = Logger.getLogger(String.valueOf(ChartBatch.class));
+
+
+    public void storeMemoryList() {
+        apiAdapters.storeMemoryList();
+    }
 
     public List<ChartDto> getList() throws Exception {
         List<ChartDto> list = new ArrayList<>();
@@ -70,6 +82,8 @@ public class ChartBatch {
 
     @Scheduled(cron = "10 */10 * * * *") // 매일 매시 매10분 간격 10초
     public void eachHourBatch() throws Exception {
+        // 1-100차트 메모리 저장
+        storeMemoryList();
 
         logger.info("Current Thread : " + Thread.currentThread().getName());
 

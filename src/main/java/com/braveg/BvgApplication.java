@@ -1,5 +1,6 @@
 package com.braveg;
 
+import com.braveg.api.ApiAdapters;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,15 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class BvgApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BvgApplication.class, args);
+		new ApiAdapters().storeMemoryList();
 	}
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/file-mileage").allowedOrigins("https://file-mileage0.web.app");
-//			}
-//		};
-//	}
-
 }

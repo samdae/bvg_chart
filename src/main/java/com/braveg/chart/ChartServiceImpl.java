@@ -155,12 +155,16 @@ public class ChartServiceImpl implements ChartService {
 
     public String getRGB(int i) {
         List<String> arr = new ArrayList<>();
-        arr.add("rgb(240, 138, 0)");
-        arr.add("rgb(240, 101, 86)");
-        arr.add("rgb(117, 214, 86)");
-        arr.add("rgb(139, 81, 211)");
-        arr.add("rgb(255, 175, 59)");
-        //arr.add("rgb(139, 81, 211)");
+        arr.add("rgb(240, 138, 0)");   // 0
+        arr.add("rgb(240, 101, 86)");  // 1
+        arr.add("rgb(117, 214, 86)");  // 2
+        arr.add("rgb(139, 81, 211)");  // 3
+        arr.add("rgb(255, 175, 59)");  // 4
+        arr.add("rgb(139, 81, 211)");  // 5
+        arr.add("rgb(421, 321, 121)"); // 6
+        arr.add("rgb(341, 111, 200)"); // 7
+        arr.add("rgb(113, 151, 444)"); // 8
+        arr.add("rgb(190, 110, 124)"); // 9
 
         return arr.get(i);
     }

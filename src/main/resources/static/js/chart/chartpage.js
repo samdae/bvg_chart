@@ -201,7 +201,10 @@ function _img(title) {
     if (title.indexOf("(We Ride)") > -1) return "x31j-fjf329bn20gnv.jpg";
     if (title.indexOf("하이힐") > -1) return "x87m-ajfie319nmg9.jpg";
     if (title.indexOf("(New Version)") > -1) return "x67e-qnvj931opqwb.jpg";
-    if (title.indexOf("치맛바람") > -1 || title.indexOf("mat") > -1) return "w83o-fqmv491qom0.png";
+    if (title.indexOf("치맛바람") > -1 || title.indexOf("Mat") > -1
+    || title.indexOf("Pool") > -1   || title.indexOf("Party") > -1
+    || title.indexOf("Summer") > -1 || title.indexOf("여름") > -1
+    || title.indexOf("FEVER") > -1  || title.indexOf("토요일") > -1) return "w83o-fqmv491qom0.png";
 }
 
 var monthlyChart;
@@ -282,3 +285,4 @@ function setData(data) {
         }
     });
 }
+
