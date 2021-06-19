@@ -3,17 +3,13 @@ package com.braveg.api;
 import com.braveg.api.adapters.BugsAPI;
 import com.braveg.api.adapters.FloAPI;
 import com.braveg.api.adapters.GenieAPI;
-import com.braveg.api.adapters.Melon24API;
 import com.braveg.api.adapters.MelonRealAPI;
 import com.braveg.api.adapters.VibeAPI;
 import com.braveg.api.adapters.YoutubeMusicAPI;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +30,7 @@ public class ApiAdapters {
         genie        = null;
         flo          = null;
         vibe         = null;
-        // when socket failed -> try again...
+        // when socket connection failed -> try again only once...
         try{melon24      = MelonRealAPI.get();   } catch (Exception e) {melon24      = MelonRealAPI.get();   }
         try{melonReal    = MelonRealAPI.get();   } catch (Exception e) {melonReal    = MelonRealAPI.get();   }
         try{youtubeMusic = YoutubeMusicAPI.get();} catch (Exception e) {youtubeMusic = YoutubeMusicAPI.get();}
