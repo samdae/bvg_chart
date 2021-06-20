@@ -39,12 +39,11 @@ public class ChartBatch {
         this.apiAdapters = apiAdapters;
     }
 
-
     private Logger logger = Logger.getLogger(String.valueOf(ChartBatch.class));
 
 
     public void storeMemoryList() {
-        apiAdapters.storeMemoryList();
+        ApiAdapters.storeMemoryList();
     }
 
     public List<ChartDto> getList() throws Exception {
@@ -79,7 +78,7 @@ public class ChartBatch {
 //    }
 
 
-    @Scheduled(cron = "10 */10 * * * *") // 매일 매시 매10분 간격 10초
+    @Scheduled(cron = "10 */10 * * * *") // 매일 매시 매10분10초 마다
     public void eachHourBatch() throws Exception {
         // 1-100차트 메모리 저장
         storeMemoryList();

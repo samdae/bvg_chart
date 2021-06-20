@@ -3,6 +3,7 @@ package com.braveg.api;
 import com.braveg.api.adapters.BugsAPI;
 import com.braveg.api.adapters.FloAPI;
 import com.braveg.api.adapters.GenieAPI;
+import com.braveg.api.adapters.Melon24API;
 import com.braveg.api.adapters.MelonRealAPI;
 import com.braveg.api.adapters.VibeAPI;
 import com.braveg.api.adapters.YoutubeMusicAPI;
@@ -22,7 +23,7 @@ public class ApiAdapters {
     public static List<RankInfo> flo;
     public static List<RankInfo> vibe;
 
-    public void storeMemoryList() {
+    public static void storeMemoryList() {
         melon24      = null;
         melonReal    = null;
         youtubeMusic = null;
@@ -31,13 +32,13 @@ public class ApiAdapters {
         flo          = null;
         vibe         = null;
         // when socket connection failed -> try again only once...
-        try{melon24      = MelonRealAPI.get();   } catch (Exception e) {melon24      = MelonRealAPI.get();   }
-        try{melonReal    = MelonRealAPI.get();   } catch (Exception e) {melonReal    = MelonRealAPI.get();   }
-        try{youtubeMusic = YoutubeMusicAPI.get();} catch (Exception e) {youtubeMusic = YoutubeMusicAPI.get();}
-        try{bugs         = BugsAPI.get();        } catch (Exception e) {bugs         = BugsAPI.get();        }
-        try{genie        = GenieAPI.get();       } catch (Exception e) {genie        = GenieAPI.get();       }
-        try{flo          = FloAPI.get();         } catch (Exception e) {flo          = FloAPI.get();         }
-        try{vibe         = VibeAPI.get();        } catch (Exception e) {vibe         = VibeAPI.get();        }
+        try{melon24      = Melon24API.get();     } catch (Exception e) {melon24      = Melon24API.get();     } finally{melon24      = Melon24API.get();     }
+        try{melonReal    = MelonRealAPI.get();   } catch (Exception e) {melonReal    = MelonRealAPI.get();   } finally{melonReal    = MelonRealAPI.get();   }
+        try{youtubeMusic = YoutubeMusicAPI.get();} catch (Exception e) {youtubeMusic = YoutubeMusicAPI.get();} finally{youtubeMusic = YoutubeMusicAPI.get();}
+        try{bugs         = BugsAPI.get();        } catch (Exception e) {bugs         = BugsAPI.get();        } finally{bugs         = BugsAPI.get();        }
+        try{genie        = GenieAPI.get();       } catch (Exception e) {genie        = GenieAPI.get();       } finally{genie        = GenieAPI.get();       }
+        try{flo          = FloAPI.get();         } catch (Exception e) {flo          = FloAPI.get();         } finally{flo          = FloAPI.get();         }
+        try{vibe         = VibeAPI.get();        } catch (Exception e) {vibe         = VibeAPI.get();        } finally{vibe         = VibeAPI.get();        }
     }
 
     public List<RankInfo> separator(String siteName) {
