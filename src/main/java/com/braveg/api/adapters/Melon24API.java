@@ -1,6 +1,7 @@
 package com.braveg.api.adapters;
 
 import com.braveg.api.RankInfo;
+import com.braveg.utils.DateUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -29,6 +30,7 @@ public class Melon24API {
                 ri.setRank(i+1);
                 ri.setTitle(title);
                 ri.setArtist(name);
+                ri.setDateTime(DateUtils.getCurrent("yyMMddHH"));
                 result.add(ri);
                 ri=null;
             }

@@ -1,6 +1,7 @@
 package com.braveg.api.adapters;
 
 import com.braveg.api.RankInfo;
+import com.braveg.utils.DateUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -91,6 +92,7 @@ public class YoutubeMusicAPI {
                     ri.setRank(i+1);
                     ri.setTitle(title);
                     ri.setArtist(name);
+                    ri.setDateTime(DateUtils.getCurrent("yyMMddHH"));
                     result.add(ri);
                     ri=null;
                 }

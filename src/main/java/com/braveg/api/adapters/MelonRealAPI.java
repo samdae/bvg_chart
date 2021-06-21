@@ -1,6 +1,7 @@
 package com.braveg.api.adapters;
 
 import com.braveg.api.RankInfo;
+import com.braveg.utils.DateUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -49,6 +50,7 @@ public class MelonRealAPI {
                 ri.setRank(Integer.parseInt(순위));
                 ri.setTitle(노래제목);
                 ri.setArtist(가수);
+                ri.setDateTime(DateUtils.getCurrent("yyMMddHH"));
                 result.add(ri);
                 ri=null;
             }

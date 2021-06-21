@@ -1,6 +1,7 @@
 package com.braveg.api.adapters;
 
 import com.braveg.api.RankInfo;
+import com.braveg.utils.DateUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -10,7 +11,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.braveg.mileage.adapter.ssl.SSLConfig.setSSL;
+
 public class GenieAPI {
+    /*
+        불규칙적 에러발생
+        javax.net.ssl.SSLException: Connection reset
+        -단순 Connection reset이슈는 서버쪽이 아니라, 연결을 시도하는 우리쪽 이슈라는것.
+        -상대방에서 연결을 끊는경우 java.net.SocketException reset by peer  에러가 발생한다.
+           setSSL 해버린다.
+     */
     public static List<RankInfo> get() {
         List<RankInfo> result = new ArrayList<>();
 
@@ -22,6 +32,7 @@ public class GenieAPI {
 
         String url = "https://www.genie.co.kr/chart/top200?ditc=D&ymd="+date+"&hh="+hour+"&rtm=Y&pg=";
         try{
+            setSSL();
             result = genieList(url,"1",result);
             result = genieList(url,"2",result);
         }catch (Exception e){
@@ -43,6 +54,7 @@ public class GenieAPI {
             ri.setRank(Integer.parseInt(rank));
             ri.setTitle(title);
             ri.setArtist(name);
+            ri.setDateTime(DateUtils.getCurrent("yyMMddHH"));
             result.add(ri);
             ri=null;
         }

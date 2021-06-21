@@ -1,6 +1,7 @@
 package com.braveg.api.adapters;
 
 import com.braveg.api.RankInfo;
+import com.braveg.utils.DateUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -43,8 +44,9 @@ public static List<RankInfo> get(){
                 ri.setRank(i + 1);
                 ri.setTitle(title);
                 ri.setArtist(name);
+                ri.setDateTime(DateUtils.getCurrent("yyMMddHH"));
                 result.add(ri);
-                ri = null;
+                ri=null;
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.braveg.api.adapters;
 
 import com.braveg.api.RankInfo;
+import com.braveg.utils.DateUtils;
 import org.json.XML;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -12,16 +13,16 @@ import java.util.List;
 
 public class VibeAPI {
 
-    public static List<RankInfo> get(){
+    public static List<RankInfo> get() {
         List<RankInfo> result = new ArrayList<>();
-        try{
+        try {
             String url = "https://apis.naver.com/vibeWeb/musicapiweb/vibe/v1/chart/track/total";
             Document doc = Jsoup.connect(url).get();
             org.json.JSONObject json = XML.toJSONObject(doc.toString());
             org.json.JSONObject track = json.getJSONObject("response").getJSONObject("result").getJSONObject("chart").getJSONObject("items").getJSONObject("tracks");
             org.json.JSONArray arr = track.getJSONArray("track"); // 1-100
 
-            for(int i=0; i<arr.length(); i++) {
+            for (int i = 0; i < arr.length(); i++) {
                 String arrStr = arr.get(i).toString(); // 1-100 중 1줄 단위로 끊어내서
 
                 org.json.simple.JSONObject song = (org.json.simple.JSONObject) new JSONParser().parse(arrStr); // json object로 parsing
@@ -44,16 +45,17 @@ public class VibeAPI {
                 String title = song.get("trackTitle").toString();
 
                 // set
-                 RankInfo ri = new RankInfo();
-                 ri.setRank(i+1);
-                 ri.setTitle(title);
-                 ri.setArtist(name);
-                 result.add(ri);
-                 ri=null;
+                RankInfo ri = new RankInfo();
+                ri.setRank(i + 1);
+                ri.setTitle(title);
+                ri.setArtist(name);
+                ri.setDateTime(DateUtils.getCurrent("yyMMddHH"));
+                result.add(ri);
+                ri = null;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return  result;
+        return result;
     }
 }

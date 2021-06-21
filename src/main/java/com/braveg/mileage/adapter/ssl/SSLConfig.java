@@ -18,26 +18,20 @@ public class SSLConfig {
     }
 
     public static void setSSL() throws NoSuchAlgorithmException, KeyManagementException {
-
         TrustManager[] trustAllCerts = new TrustManager[]{
                 new X509TrustManager() {
                     @Override
                     public X509Certificate[] getAcceptedIssuers() {
-                        // TODO Auto-generated method stub
                         return null;
                     }
-
                     @Override
                     public void checkClientTrusted(X509Certificate[] chain, String authType)
-                            throws CertificateException {
-                        // TODO Auto-generated method stub
-
+                        throws CertificateException {
                     }
 
                     @Override
                     public void checkServerTrusted(X509Certificate[] chain, String authType)
-                            throws CertificateException {
-                        // TODO Auto-generated method stub
+                        throws CertificateException {
                     }
                 }
         };
