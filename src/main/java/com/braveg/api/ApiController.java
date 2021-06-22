@@ -22,6 +22,13 @@ public class ApiController {
     private ApiAdapters apiAdapters;
     private static List site = Arrays.asList("melon24" , "melonreal" , "youtubemusic" , "bugs" , "genie" , "flo" , "vibe");
 
+    /*
+        아이튠즈, 소리바다 정도 더 추가할까 ?
+
+        Scriptable 배포환경 view 퍄일에 모달로 슬라이드 만들어서 소스코드 올린 후 배포 .. -> 쁘갤에 홍보
+
+
+     */
     @Autowired
     public ApiController(ApiAdapters apiAdapters){
         this.apiAdapters = apiAdapters;
@@ -39,7 +46,6 @@ public class ApiController {
                 .filter( t -> site.contains(t) ) // 개짓거리 방지
                 .collect(Collectors.toList());
     }
-
 /*
 /this-api :
 {
@@ -193,7 +199,6 @@ public class ApiController {
     @GetMapping(value = "/api/{kindsName}/artist/{artistName}",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity requestMethod_3(@PathVariable(value="kindsName") String kindsName,
                                           @PathVariable(value="artistName") String artistName ) {
-
         // initialize result body
         JSONObject resultBody = new JSONObject();
         // initialize result list
