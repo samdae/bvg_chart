@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,7 +137,7 @@ public class ApiController {
     @GetMapping(value = "/api/{kindsName}/{startRank}/{endRank}",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public ResponseEntity requestMethod_1(@PathVariable(value="kindsName") String kindsName,
                                           @PathVariable(value="startRank") @Min(1) Integer startRank,
-                                          @PathVariable(value="endRank") @Min(100) Integer endRank) {
+                                          @PathVariable(value="endRank") @Max(100) Integer endRank) {
 
         if( startRank > endRank ) {
             JSONObject badReq = new JSONObject();
@@ -214,6 +215,7 @@ public class ApiController {
             );
             resultList.add(eachSiteObj);
         }
+
         resultBody.put("request", siteList);
         resultBody.put("body",resultList);
         return ResponseEntity.ok(resultBody);

@@ -73,6 +73,9 @@
         LEFT OUTER JOIN (SELECT * FROM DATE_RANK WHERE SITE = #{site}) C
         ON TEMT.TITLE = C.TITLE
         AND TEMT.SDATE = C.SDATE
+        <![CDATA[
+        WHERE DATE_FORMAT(TEMT.SDATE, '%Y%m%d') > DATE_FORMAT(DATE_ADD(NOW(), interval -30 day),'%Y%m%d')
+        ]]>
     </select>
 
     <!-- 사이트별 순위,,그래프그리기,,, LIST    -->
